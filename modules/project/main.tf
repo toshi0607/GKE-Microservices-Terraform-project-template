@@ -2,6 +2,7 @@
 resource "google_project" "project" {
   name            = var.gcp_project
   project_id      = var.gcp_project
+  # Please remove org_id if you don't configure an organization
   org_id          = var.gcp_org
   billing_account = var.billing_account
 
