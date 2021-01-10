@@ -1,7 +1,6 @@
 module "cluster" {
   source = "../../modules/cluster"
 
-  gcp_project     = 【YOUR PROJECT】
   # 例: toshi0607-20201221-cluster
   service_name    = 【YOUR SERVICE】
   environment     = "dev"
