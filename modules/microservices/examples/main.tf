@@ -1,5 +1,5 @@
 module "microservice" {
-  source = ".."
+  source = "../"
 
   gke_project  = data.terraform_remote_state.cluster.outputs.gke_project_id
   service_name = var.service_name
@@ -19,10 +19,8 @@ data "terraform_remote_state" "cluster" {
 # https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/auth
 data "google_client_config" "provider" {}
 
-# https://github.com/niallthomson/tanzu-playground/blob/4789e19da2b262c5de076fcd09778a0c92cf0c92/terraform/gke/cf-for-k8s/providers.tf
+# https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started#provider-setup
 provider "kubernetes" {
-  load_config_file = false
-
   host  = "https://${data.terraform_remote_state.cluster.outputs.gke_endpoint}"
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
@@ -31,5 +29,3 @@ provider "kubernetes" {
 }
 
 provider "google" {}
-
-provider "google-beta" {}

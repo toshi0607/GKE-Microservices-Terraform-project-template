@@ -6,13 +6,13 @@ variable "gcp_project" {
 variable "gcp_org" {
   description = "GCP organization id"
   type        = string
-  # default     = 【あなたのOrganization ID】
+  default     = 【YOUR ORGANIZATION ID】
 }
 
 variable "billing_account" {
   description = "Billing account for the GCP project"
   type        = string
-  # default     = 【あなたのBilling account】
+  default     = 【YOUR BILLING ACCOUNT】
 }
 
 variable "gcp_default_enabled_services" {

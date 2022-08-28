@@ -1,7 +1,7 @@
 terraform {
-  required_version = "~> 0.13"
+  required_version = "~> 1.2"
   required_providers {
-    google = ">= 3.33.0"
+    google = ">= 4.32.0"
   }
 }
 
@@ -23,7 +23,7 @@ resource "google_container_cluster" "primary" {
   }
 
   workload_identity_config {
-    identity_namespace = "${module.project.project_id}.svc.id.goog"
+    workload_pool = "${module.project.project_id}.svc.id.goog"
   }
 
   initial_node_count       = 1
@@ -43,16 +43,16 @@ resource "google_container_node_pool" "primary" {
     machine_type = "e2-medium"
 
     workload_metadata_config {
-      node_metadata = "GKE_METADATA_SERVER"
+      mode = "GKE_METADATA"
     }
 
     metadata = {
       disable-legacy-endpoints = "true"
     }
 
+    # https://cloud.google.com/compute/docs/access/service-accounts#authorization
     oauth_scopes = [
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
 

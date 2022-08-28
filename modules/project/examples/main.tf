@@ -1,5 +1,5 @@
 module "project" {
-  source = ".."
+  source = "../"
 
   gcp_project = var.project_id
 }

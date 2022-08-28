@@ -1,7 +1,8 @@
 terraform {
-  required_version = "~> 0.13"
+  required_version = "~> 1.2"
   required_providers {
-    google = ">= 3.33.0"
+    google = ">= 4.32.0"
+    kubernetes = ">= 2.12.1"
   }
 }
 
@@ -90,10 +91,8 @@ resource "google_service_account_iam_binding" "pod_default_is_workload_identity_
   ]
 }
 
-# https://www.terraform.io/docs/providers/google/r/artifact_registry_repository.html
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository
 resource "google_artifact_registry_repository" "container" {
-  provider = google-beta
-
   project = module.project.project_id
 
   location      = var.gcp_region
@@ -102,8 +101,6 @@ resource "google_artifact_registry_repository" "container" {
 }
 
 resource "google_artifact_registry_repository_iam_member" "pod_default_is_artifact_registry_reader" {
-  provider = google-beta
-
   project = module.project.project_id
 
   location   = google_artifact_registry_repository.container.location

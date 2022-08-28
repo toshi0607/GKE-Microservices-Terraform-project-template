@@ -1,10 +1,10 @@
 # https://hub.docker.com/_/golang
-FROM golang:1.14.12-stretch
+FROM golang:1.19.0-bullseye
 RUN apt-get update && apt-get install -y --no-install-recommends unzip
 
-ENV TERRAFORM_VERSION=0.13.5 \
-    CLOUD_SDK_VERSION=319.0.0 \
-    CONFTEST_VERSION=0.22.0
+ENV TERRAFORM_VERSION=1.2.7 \
+    CLOUD_SDK_VERSION=398.0.0 \
+    CONFTEST_VERSION=0.34.0
 
 RUN wget -q -O /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && cd /tmp \

@@ -1,5 +1,5 @@
 # https://www.terraform.io/docs/providers/google/r/google_project.html
-resource "google_project" "project" {
+resource "google_project" "microservice" {
   name            = var.gcp_project
   project_id      = var.gcp_project
   # Please remove org_id if you don't configure an organization
