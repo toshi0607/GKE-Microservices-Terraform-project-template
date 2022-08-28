@@ -23,7 +23,7 @@ variable "service_name" {
 variable "billing_account" {
   description = "Billing account for the GCP project"
   type        = string
-  default     = 【あなたのBilling account】
+  default     = 【YOUR BILLING ACCOUNT】
 }
 
 variable "service_viewers" {
